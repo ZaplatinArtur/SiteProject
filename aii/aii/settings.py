@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-akd0!2^q%!hjvn2b#*l1(b1vms1j@mh_mz4&4ta5*wx&-77ov+
 DEBUG = True
 
 ALLOWED_HOSTS = []
+<<<<<<< HEAD
 
+=======
+#ALLOWED_HOSTS = ['arturzum.pythonanywhere.com']
+>>>>>>> d737c4a (Initial commit)
 
 # Application definition
 
@@ -130,4 +134,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 
+<<<<<<< HEAD
 ]
+=======
+]
+
+STATIC_ROOT = "/home/arturzum/SiteProject/aii/static"
+>>>>>>> d737c4a (Initial commit)
