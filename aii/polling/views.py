@@ -1,17 +1,16 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-import cv2
-=======
 
->>>>>>> d737c4a (Initial commit)
+import cv2
+
+
+
 
 # Create your views here.
 def pool(request):
     data = {
         'title': "Опросник"
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> d737c4a (Initial commit)
+
+
     return render(request, 'polling/pool.html',data)
