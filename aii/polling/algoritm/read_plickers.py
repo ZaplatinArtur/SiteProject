@@ -243,11 +243,11 @@ def main(camera=0):
     """запускает главное окно программы, которое позволяет
         выбрать класс и запустить сканирование"""
     main_window = Tk.Tk()
-    main_window.title("Выбор класса")
-    button_group_1 = Tk.Button(main_window, text="1 класс", command=(lambda: real_time_scanner(CLASS_TEST, camera, main_window)))
-
-    button_group_1.pack()
-    main_window.mainloop()
+    #main_window.title("Выбор класса")
+    #button_group_1 = Tk.Button(main_window, text="1 класс", command=(lambda: real_time_scanner(CLASS_TEST, camera, main_window)))
+    real_time_scanner(CLASS_TEST, camera, main_window)
+    #button_group_1.pack()
+    #main_window.mainloop()
 
 
 if __name__ == '__main__':
