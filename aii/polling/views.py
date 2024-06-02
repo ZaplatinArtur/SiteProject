@@ -1,42 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import *
-from django.core.mail import EmailMessage
-from django.views.decorators import gzip
-from django.http import StreamingHttpResponse
-import cv2
-import threading
+from django.shortcuts import render, redirect
+from .forms import ImageForm
 
-@gzip.gzip_page
-def Home(request):
-    try:
-        cam = VideoCamera()
-        return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
-    except:
-        pass
-    return render(request, 'app1.html')
 
-#to capture video class
-class VideoCamera(object):
-    def __init__(self):
-        self.video = cv2.VideoCapture(0)
-        (self.grabbed, self.frame) = self.video.read()
-        threading.Thread(target=self.update, args=()).start()
 
-    def __del__(self):
-        self.video.release()
 
-    def get_frame(self):
-        image = self.frame
-        _, jpeg = cv2.imencode('.jpg', image)
-        return jpeg.tobytes()
 
-    def update(self):
-        while True:
-            (self.grabbed, self.frame) = self.video.read()
-
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+def image_upload_view(request):
+    """Process images uploaded by users"""
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            return render(request, 'polling/pool.html', {'form': form, 'img_obj': img_obj})
+    else:
+        form = ImageForm()
+    return render(request, 'polling/pool.html', {'form': form})

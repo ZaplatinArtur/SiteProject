@@ -36,7 +36,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main',
-    'news',
     'polling',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -141,3 +140,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = "/home/arturzum/SiteProject/aii/static"
 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
