@@ -5,7 +5,7 @@ import tkinter as Tk
 import cv2
 import numpy as np
 
-from date_ref import CATALOGUE,CLASS_TEST
+from algoritm.date_ref import CATALOGUE,CLASS_TEST
 
 remaining_students = []
 
@@ -194,10 +194,10 @@ def scan_photo(group, name_photo):
     '''Сканирует карточки на фото'''
     global answers, input_field, label_entry_get
     answers = []
-    label_entry_get['text'] = f'{input_field.get()}'
-    name = str(str(name_photo) + ".jpg")
-    frame = cv2.imread(name, cv2.IMREAD_COLOR)
-    cv2.imshow('gfgfgg', frame)
+    #label_entry_get['text'] = f'{input_field.get()}'
+    #name = str(str(name_photo) + ".jpg")
+    frame = cv2.imread(name_photo, cv2.IMREAD_COLOR)
+    #cv2.imshow('gfgfgg', frame)
     for identification, answer in recognizes_cards(frame, group):
         if identification <= len(group):
             answers.append((identification, answer))
@@ -306,4 +306,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    scan_photo(CLASS_TEST,"002.jpg")
